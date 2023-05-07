@@ -1,9 +1,5 @@
 
-.profile {
-    grid-column: 3/4;
-    grid-row: 2/3;
-    background: cadetblue;
-}
+
 .picture {
     height: 150px;
     width: 100%;
@@ -28,4 +24,5 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    padding: 10px;
 }

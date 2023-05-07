@@ -10,4 +10,8 @@
   grid-template-columns: 1fr minmax(20%, 300px) minmax(50%, 900px) 1fr;
   grid-template-rows: 150px auto;
 }
-
+.app-wrapper-content {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  background: cadetblue;
+}
