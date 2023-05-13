@@ -3,6 +3,12 @@ import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
 
 export const MyPosts =()=> {
+    let posts = [
+        {message: 'What is your favourite drink?', id: 1, like_counts: 15},
+        {message: 'Hi, How are you?', id: 2, like_counts: 25},
+        {message: 'Hi, How are you? Hi, How are you?', id: 3, like_counts: 35},
+    ]
+    let postsElements=posts.map(el =>  <Post message={el.message} like_counts={el.like_counts}/>)
     return (
         <div className={s.my_posts}>
             <h3>My posts</h3>
@@ -10,9 +16,7 @@ export const MyPosts =()=> {
                 <button>Send</button>
             </div>
             <div className={s.previous_posts}>
-                <Post message='What is your favourite drink?' like_counts={15}/>
-                <Post message='Hi, How are you?' like_counts={25}/>
-                <Post message='Hi, How are you?' like_counts={19}/>
+                {postsElements}
             </div>
         </div>
     )
