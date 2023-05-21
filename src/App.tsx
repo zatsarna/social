@@ -18,7 +18,7 @@ import {StateTypeInner} from './redux/state';
 type StateType={
     state: StateTypeInner
 }*/
-function App (props: {state:StateTypeInner}) {
+function App (props: {state:StateTypeInner, addPost: (text: string)=>void}) {
 
     return (
             <div className="app-wrapper">
@@ -28,7 +28,7 @@ function App (props: {state:StateTypeInner}) {
                 <div className="app-wrapper-content">
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
                     <Route path='/dialogs' render={()=><Dialogs state={props.state.dialogsPage} />} />
-                    <Route path='/profile' render={()=><Profile state={props.state.profilePage}/>}/>
+                    <Route path='/profile' render={()=><Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                     <Route path='/news' render={()=><News/>}/>
                     <Route path='/music' render={()=><Music/>}/>
                     <Route path='/settings' render={()=><Settings/>}/>

@@ -11,6 +11,8 @@
 }
 .new_post textarea{
     display: block;
+    width: 50%;
+    height: 100px;
 }
 .new_post button{
     display: block;

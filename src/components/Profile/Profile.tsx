@@ -15,12 +15,12 @@ type PostsType={
     }
 
 }*/
-export const Profile = (props: {state: ProfilePageType}) => {
+export const Profile = (props: {state: ProfilePageType, addPost: (text: string)=>void}) => {
 
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts}/>
+            <MyPosts posts={props.state.posts} addPost={props.addPost}/>
         </main>
     )
 }

@@ -1,6 +1,8 @@
 /*import {PostType} from '../components/Profile/Profile';
 import {DialogType, MessagesType} from '../components/Dialogs/Dialogs';*/
 
+import {rerenderEntireTree} from '../render';
+
 export type DialogType={
     name: string,
     id: number
@@ -11,7 +13,7 @@ export type MessagesType={
 }
 
 export type PostType = {
-    message: string,
+    message: string | undefined,
     id?: number,
     like_counts: number
 }
@@ -52,4 +54,8 @@ export let state: StateTypeInner={
         ]
     }
 
+}
+export const addPost=(text: string)=>{
+    state.profilePage.posts.push({message: text, id:state.profilePage.posts.length+1, like_counts: 0})
+    rerenderEntireTree(state);
 }
