@@ -1,27 +1,33 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {PostType} from '../../../redux/state';
+import {PostType, updateNewPostText} from '../../../redux/state';
 
 type MyPostsPropsType={
-    posts: PostType[] ,
-    addPost: (text: string)=>void}
-export const MyPosts: React.FC<MyPostsPropsType> = ({posts, addPost}) => {
+    posts: {posts: PostType[], newPostText: string, }
+    addPost: ()=>void
+    updateNewPostText: (text: string)=> void
+}
 
-    let postsElements = posts.map(el => <Post message={el.message} like_counts={el.like_counts}/>)
+export const MyPosts: React.FC<MyPostsPropsType> = ({posts, addPost, updateNewPostText}) => {
+
+    let postsElements = posts.posts.map(el => <Post message={el.message} like_counts={el.like_counts}/>)
     const newPostElement= useRef<HTMLTextAreaElement>(null)
 
     function addPostHandler() {
-        if (newPostElement.current?.value) {
-            addPost(newPostElement.current.value);
-            newPostElement.current.value = '';
+        addPost();
+    }
+
+    function onChangeHandler() {
+        if (newPostElement.current?.value){
+            updateNewPostText(newPostElement.current.value);
         }
     }
 
     return (
         <div className={s.my_posts}>
             <h3>My posts</h3>
-            <div className={s.new_post}><textarea ref={newPostElement}></textarea>
+            <div className={s.new_post}><textarea ref={newPostElement} onChange={onChangeHandler} value={posts.newPostText}/>
                 <button onClick={addPostHandler}>Send</button>
             </div>
             <div className={s.previous_posts}>

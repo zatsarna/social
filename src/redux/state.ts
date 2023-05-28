@@ -22,7 +22,8 @@ export type DialogPageType={
     dialogs: DialogType[]
 }
 export type ProfilePageType={
-    posts: PostType[]
+    posts: PostType[],
+    newPostText: string,
 }
 export type StateTypeInner={
     profilePage: ProfilePageType
@@ -36,6 +37,7 @@ export let state: StateTypeInner={
             {message: 'Hi, How are you?', id: 2, like_counts: 25},
             {message: 'Hi, How are you? Hi, How are you?', id: 3, like_counts: 35},
         ] ,
+        newPostText: "",
     },
     dialogsPage: {
         messages : [
@@ -55,7 +57,12 @@ export let state: StateTypeInner={
     }
 
 }
-export const addPost=(text: string)=>{
-    state.profilePage.posts.push({message: text, id:state.profilePage.posts.length+1, like_counts: 0})
+export const addPost=()=>{
+    state.profilePage.posts.push({message: state.profilePage.newPostText, id:state.profilePage.posts.length+1, like_counts: 0})
+    state.profilePage.newPostText=""
+    rerenderEntireTree(state);
+}
+export const updateNewPostText=(text: string)=>{
+    state.profilePage.newPostText=text
     rerenderEntireTree(state);
 }
