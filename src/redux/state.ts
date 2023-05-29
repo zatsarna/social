@@ -1,7 +1,3 @@
-/*import {PostType} from '../components/Profile/Profile';
-import {DialogType, MessagesType} from '../components/Dialogs/Dialogs';*/
-
-import {rerenderEntireTree} from '../render';
 
 export type DialogType={
     name: string,
@@ -11,7 +7,6 @@ export type MessagesType={
     message: string,
     id?: number
 }
-
 export type PostType = {
     message: string | undefined,
     id?: number,
@@ -30,6 +25,8 @@ export type StateTypeInner={
     dialogsPage: DialogPageType
 }
 
+let rerenderEntireTree=(state: StateTypeInner)=>{
+}
 export let state: StateTypeInner={
     profilePage: {
         posts:[
@@ -65,4 +62,7 @@ export const addPost=()=>{
 export const updateNewPostText=(text: string)=>{
     state.profilePage.newPostText=text
     rerenderEntireTree(state);
+}
+export  const subscribe =(observer: (state: StateTypeInner)=>void)=> {
+    rerenderEntireTree=observer
 }
