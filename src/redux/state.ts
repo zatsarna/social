@@ -13,7 +13,8 @@ export type PostType = {
 }
 export type DialogPageType = {
     messages: MessagesType[],
-    dialogs: DialogType[]
+    dialogs: DialogType[],
+    newMessageText: string
 }
 export type ProfilePageType = {
     posts: PostType[],
@@ -24,7 +25,7 @@ export type StateTypeInner = {
     dialogsPage: DialogPageType
 }
 export type ActionType = {
-    type: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT',
+    type: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT' | "UPDATE-NEW-MESSAGE-TEXT" | 'ADD-MESSAGE',
     text?: string
 }
 
@@ -46,6 +47,7 @@ let store = {
                 {message: 'How are you doing', id: 4},
                 {message: 'Hello', id: 5}
             ],
+            newMessageText: "",
             dialogs: [
                 {name: 'Dimych', id: 1},
                 {name: 'Andrey', id: 2},
@@ -94,8 +96,32 @@ let store = {
                 this._state.profilePage.newPostText = action.text
                 this._callSubscriber(this._state);
             }
+            else if (action.text && action.type==="UPDATE-NEW-MESSAGE-TEXT"){
+                /*this._state.profilePage.newPostText = action.text*/
+                this._state.dialogsPage.newMessageText=action.text
+                this._callSubscriber(this._state);
+            } else  if (action.type==='ADD-MESSAGE'){
+                this._state.dialogsPage.messages.push({
+                    message: this._state.dialogsPage.newMessageText,
+                    id: this._state.dialogsPage.messages.length + 1
+                })
+                this._state.dialogsPage.newMessageText = ''
+                this._callSubscriber(this._state);
+
+            }
     }
 }
+export const addPostAC=()=> ({type: 'ADD-POST'} as const)
+export const updateNewPostTextAC=(text: string)=>({
+        type: 'UPDATE-NEW-POST-TEXT',
+        text:  text
+    } as const)
+
+export const addMessageAC=()=> ({type: 'ADD-MESSAGE'} as const)
+export const updateNewMessageTextAC=(text: string)=>({
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    text:  text
+} as const)
 //window.store=store;
 export default store;
 

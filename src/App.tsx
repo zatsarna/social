@@ -28,7 +28,7 @@ function App (props: {state:StateTypeInner, dispatch: (action: ActionType)=>void
                 <div className="app-wrapper-content">
                    
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    <Route path='/dialogs' render={()=><Dialogs state={props.state.dialogsPage} />} />
+                    <Route path='/dialogs' render={()=><Dialogs dispatch={props.dispatch} state={props.state.dialogsPage} />} />
                     <Route path='/profile' render={()=><Profile state={props.state.profilePage} dispatch={props.dispatch} />}/>
                     <Route path='/news' render={()=><News/>}/>
                     <Route path='/music' render={()=><Music/>}/>
