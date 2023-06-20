@@ -2,7 +2,8 @@ import React, {ChangeEvent, RefObject} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {ActionType, addMessageAC, DialogPageType, updateNewMessageTextAC} from '../../redux/state';
+import {ActionType, DialogPageType, TextActionType} from '../../redux/store';
+import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
 /*export type DialogType={
     name: string,
     id: number
@@ -17,10 +18,10 @@ export type DialogsPropsType={
         messages: Array<MessagesType>
     }
 }*/
-export const Dialogs = (props: { state: DialogPageType , dispatch: (action: ActionType)=>void}) => {
+export const Dialogs = (props: { state: DialogPageType , dispatch: (action: TextActionType | ActionType)=>void}) => {
 
     let dialogsElements = props.state.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
-    let messagesElements = props.state.messages.map(el => <Message message={el.message}/>)
+    let messagesElements = props.state.messages.map(el => <Message message={el.message} id={el.id}/>)
     /*let newMessageElement: RefObject<HTMLTextAreaElement> = React.createRef()*/
 
     function addText() {

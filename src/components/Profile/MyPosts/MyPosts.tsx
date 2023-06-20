@@ -1,17 +1,18 @@
 import React, {ChangeEvent, useRef} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ActionType, addPostAC, PostType, updateNewPostTextAC} from '../../../redux/state';
+import {ActionType, PostType, TextActionType} from '../../../redux/store';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
 
 type MyPostsPropsType={
     posts: {posts: PostType[], newPostText: string, }
-    dispatch: (action: ActionType)=>void
+    dispatch: (action: ActionType | TextActionType)=>void
 }
 
 
 export const MyPosts: React.FC<MyPostsPropsType> = ({posts, dispatch}) => {
 
-    let postsElements = posts.posts.map(el => <Post message={el.message} like_counts={el.like_counts} key={el.id}/>)
+    let postsElements = posts.posts.map(el => <Post message={el.message} like_counts={el.like_counts} key={el.id} id={el.id}/>)
    /* const newPostElement= React.createRef<HTMLTextAreaElement>()*/
 
     function addPostHandler() {

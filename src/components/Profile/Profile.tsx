@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {ActionType, ProfilePageType} from '../../redux/state';
+import {ActionType, ProfilePageType, TextActionType} from '../../redux/store';
 
 /*export type PostType={
     message: string,
@@ -15,7 +15,7 @@ type PostsType={
     }
 
 }*/
-export const Profile = (props: {state: ProfilePageType, dispatch: (action: ActionType)=>void}) => {
+export const Profile = (props: {state: ProfilePageType, dispatch: (action: ActionType | TextActionType)=>void}) => {
 
     return (
         <main>
