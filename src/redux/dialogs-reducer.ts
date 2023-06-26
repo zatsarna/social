@@ -24,7 +24,7 @@ let initState: DialogPageType={
     ]
 }
 
-const dialogsReducer=(state=initState, action: ActionType | TextActionType)=>{
+const dialogsReducer=(state: DialogPageType=initState, action: ActionType | TextActionType): DialogPageType=>{
     switch (action.type){
         case 'UPDATE-NEW-MESSAGE-TEXT':
             state.newMessageText=action.text
