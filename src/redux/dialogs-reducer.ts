@@ -1,6 +1,8 @@
-import {ActionType, DialogPageType, TextActionType} from './store';
-
+import { CommonActionType, DialogPageType} from './store';
+export type addMessageACType=ReturnType<typeof addMessageAC>
 export const addMessageAC=()=> ({type: 'ADD-MESSAGE'} as const)
+
+export type updateNewMessageTextACType=ReturnType<typeof updateNewMessageTextAC>
 export const updateNewMessageTextAC=(text: string)=>({
     type: 'UPDATE-NEW-MESSAGE-TEXT',
     text:  text
@@ -9,10 +11,7 @@ export const updateNewMessageTextAC=(text: string)=>({
 let initState: DialogPageType={
     messages: [
         {message: 'Hi how are you?', id: 1},
-        {message: 'Yo', id: 2},
-        {message: 'bye', id: 3},
-        {message: 'How are you doing', id: 4},
-        {message: 'Hello', id: 5}
+        {message: 'Yo', id: 2}
     ],
     newMessageText: "",
     dialogs: [
@@ -24,7 +23,7 @@ let initState: DialogPageType={
     ]
 }
 
-const dialogsReducer=(state: DialogPageType=initState, action: ActionType | TextActionType): DialogPageType=>{
+const dialogsReducer=(state: DialogPageType=initState, action: CommonActionType): DialogPageType=>{
     switch (action.type){
         case 'UPDATE-NEW-MESSAGE-TEXT':
             state.newMessageText=action.text

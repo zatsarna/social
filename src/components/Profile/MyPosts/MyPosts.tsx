@@ -1,12 +1,12 @@
 import React, {ChangeEvent, useRef} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {ActionType, PostType, TextActionType} from '../../../redux/store';
+import {CommonActionType, PostType} from '../../../redux/store';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
 
 type MyPostsPropsType={
     posts: {posts: PostType[], newPostText: string, }
-    dispatch: (action: ActionType | TextActionType)=>void
+    dispatch: (action: CommonActionType)=>void
 }
 
 

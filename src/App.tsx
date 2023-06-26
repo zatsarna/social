@@ -9,7 +9,7 @@ import {Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {ActionType, StateTypeInner, TextActionType} from './redux/store';
+import {CommonActionType, StateTypeInner} from './redux/store';
 
 /*type StateTypeInner={
     profilePage: {posts: PostType[]}
@@ -18,7 +18,7 @@ import {ActionType, StateTypeInner, TextActionType} from './redux/store';
 type StateType={
     state: StateTypeInner
 }*/
-function App (props: {state:StateTypeInner, dispatch: (action: ActionType | TextActionType)=>void}) {
+function App (props: {state:StateTypeInner, dispatch: (action: CommonActionType)=>void}) {
 
     return (
             <div className="app-wrapper">

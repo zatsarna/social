@@ -2,7 +2,7 @@ import React, {ChangeEvent, RefObject} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {ActionType, DialogPageType, TextActionType} from '../../redux/store';
+import {CommonActionType, DialogPageType} from '../../redux/store';
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
 /*export type DialogType={
     name: string,
@@ -18,7 +18,7 @@ export type DialogsPropsType={
         messages: Array<MessagesType>
     }
 }*/
-export const Dialogs = (props: { state: DialogPageType , dispatch: (action: TextActionType | ActionType)=>void}) => {
+export const Dialogs = (props: { state: DialogPageType , dispatch: (action: CommonActionType)=>void}) => {
 
     let dialogsElements = props.state.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
     let messagesElements = props.state.messages.map(el => <Message message={el.message} id={el.id}/>)

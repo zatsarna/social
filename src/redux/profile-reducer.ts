@@ -1,6 +1,8 @@
-import {ActionType, ProfilePageType, TextActionType} from './store';
+import { CommonActionType, ProfilePageType} from './store';
 
+export type addPostACType=ReturnType<typeof addPostAC>
 export const addPostAC=()=> ({type: 'ADD-POST'} as const)
+export type updateNewPostTextACType =ReturnType<typeof updateNewPostTextAC>
 export const updateNewPostTextAC=(text: string)=>({
     type: 'UPDATE-NEW-POST-TEXT',
     text:  text
@@ -9,12 +11,11 @@ export const updateNewPostTextAC=(text: string)=>({
 let initialState: ProfilePageType={
     posts: [
         {message: 'What is your favourite drink?', id: 1, like_counts: 15},
-        {message: 'Hi, How are you?', id: 2, like_counts: 25},
-        {message: 'Hi, How are you? Hi, How are you?', id: 3, like_counts: 35},
+        {message: 'Hi, How are you?', id: 2, like_counts: 25}
     ],
     newPostText: '',
 }
-const profileReducer=(state: ProfilePageType=initialState, action: ActionType | TextActionType): ProfilePageType=>{
+const profileReducer=(state: ProfilePageType=initialState, action: CommonActionType): ProfilePageType=>{
     switch (action.type){
         case "ADD-POST":
             state.posts.push({
@@ -31,7 +32,6 @@ const profileReducer=(state: ProfilePageType=initialState, action: ActionType | 
         default:
             return state;
     }
-
 }
 
 export default profileReducer;

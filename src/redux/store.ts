@@ -1,5 +1,5 @@
-import profileReducer from './profile-reducer';
-import dialogsReducer from './dialogs-reducer';
+import profileReducer, {addPostACType, updateNewPostTextACType} from './profile-reducer';
+import dialogsReducer, {addMessageACType, updateNewMessageTextACType} from './dialogs-reducer';
 
 export type DialogType = {
     name: string,
@@ -27,15 +27,16 @@ export type StateTypeInner = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-export type ActionType = {
-    type: 'ADD-POST' | 'ADD-MESSAGE',
-}
-export type TextActionType = {
-    type:  'UPDATE-NEW-POST-TEXT' | "UPDATE-NEW-MESSAGE-TEXT",
-    text: string
+export type CommonActionType= updateNewMessageTextACType | addMessageACType | updateNewPostTextACType | addPostACType
+/*export type StoreType={
+    _state: StateTypeInner,
+    _callSubscriber: (state: StateTypeInner)=>void,
+    getState: ()=>StateTypeInner,
+    subscribe: (observer: (state: StateTypeInner) => void)=>void,
+    dispatch: (action: ActionType | TextActionType)=>void
 }
 
-let store = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -65,15 +66,13 @@ let store = {
     },
     _callSubscriber(state: StateTypeInner) {
     },
-
     getState() {
         return this._state
     },
     subscribe(observer: (state: StateTypeInner) => void) {
         this._callSubscriber = observer
     },
-
-    /*addPost() {
+    /!*addPost() {
         this._state.profilePage.posts.push({
             message: this._state.profilePage.newPostText,
             id: this._state.profilePage.posts.length + 1,
@@ -85,19 +84,16 @@ let store = {
     updateNewPostText(text: string) {
         this._state.profilePage.newPostText = text
         this._callSubscriber(this._state);
-    },*/
+    },*!/
 
-    dispatch(action: ActionType | TextActionType) {
+    dispatch(action: CommonActionType) {
             this._state.profilePage=profileReducer(this._state.profilePage,action)
             this._state.dialogsPage=dialogsReducer(this._state.dialogsPage,action)
             this._callSubscriber(this._state);
     }
 }
-
-
-
 //window.store=store;
-export default store;
+export default store;*/
 
 
 
