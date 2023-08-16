@@ -6,10 +6,16 @@ import App from './App';
 
 import { StateTypeInner} from './redux/store';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider, StoreContext} from './StoreContext';
 
 const rerenderEntireTree=(state: StateTypeInner)=> {
     ReactDOM.render(
-        <BrowserRouter><App state={state} dispatch={store.dispatch.bind(store)} store={store} /></BrowserRouter>,
+        <BrowserRouter>
+            <Provider store={store} >
+               {/* <App state={state} dispatch={store.dispatch.bind(store)} store={store} />*/}
+                <App/>
+            </Provider>
+            </BrowserRouter>,
         document.getElementById('root')
     );
 }

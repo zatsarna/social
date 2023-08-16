@@ -7,11 +7,10 @@ import {Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {CommonActionType, StateTypeInner} from './redux/store';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 
-function App (props: {state:StateTypeInner, dispatch: (action: CommonActionType)=>void, store: any}) {
+function App () {
 
     return (
             <div className="app-wrapper">
@@ -21,8 +20,8 @@ function App (props: {state:StateTypeInner, dispatch: (action: CommonActionType)
                 <div className="app-wrapper-content">
                    
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    <Route path='/dialogs' render={()=><DialogsContainer store={props.store} />} />
-                    <Route path='/profile' render={()=><Profile store={props.store} />}/>
+                    <Route path='/dialogs' render={()=><DialogsContainer/>} />
+                    <Route path='/profile' render={()=><Profile/>}/>
                     <Route path='/news' render={()=><News/>}/>
                     <Route path='/music' render={()=><Music/>}/>
                     <Route path='/settings' render={()=><Settings/>}/>
