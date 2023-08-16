@@ -3,6 +3,7 @@ import s from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import { CommonActionType, ProfilePageType} from '../../redux/store';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
 /*export type PostType={
     message: string,
@@ -15,12 +16,12 @@ type PostsType={
     }
 
 }*/
-export const Profile = (props: {state: ProfilePageType, dispatch: (action: CommonActionType)=>void}) => {
+export const Profile = (props: {store: any}) => {
 
     return (
         <main>
             <ProfileInfo/>
-            <MyPosts posts={props.state} dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store}/>
         </main>
     )
 }

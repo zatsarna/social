@@ -3,32 +3,20 @@ import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 import {CommonActionType, DialogPageType} from '../../redux/store';
-import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
-/*export type DialogType={
-    name: string,
-    id: number
-}
-export type MessagesType={
-    message: string,
-    id: number
-}
-export type DialogsPropsType={
-    state: {
-        dialogs: Array<DialogType>,
-        messages: Array<MessagesType>
-    }
-}*/
-export const Dialogs = (props: { state: DialogPageType , dispatch: (action: CommonActionType)=>void}) => {
 
-    let dialogsElements = props.state.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
-    let messagesElements = props.state.messages.map(el => <Message message={el.message} id={el.id}/>)
+export const Dialogs = (props: { dialogPage: DialogPageType , updateNewMessageText: (text: string)=>void, addText: ()=>void}) => {
+
+    let dialogsElements = props.dialogPage.dialogs.map(el => <DialogItem name={el.name} id={el.id} key={el.id}/>)
+    let messagesElements = props.dialogPage.messages.map(el => <Message message={el.message} id={el.id} key={el.id}/>)
     /*let newMessageElement: RefObject<HTMLTextAreaElement> = React.createRef()*/
 
     function addText() {
-        props.dispatch(addMessageAC())
+        props.addText()
+        //props.dispatch(addMessageAC())
     }
     const onChangeHandler=(e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch(updateNewMessageTextAC(e.currentTarget.value))
+        props.updateNewMessageText(e.currentTarget.value)
+        //props.dispatch(updateNewMessageTextAC(e.currentTarget.value))
 
     }
 
@@ -41,7 +29,7 @@ export const Dialogs = (props: { state: DialogPageType , dispatch: (action: Comm
                 <div>{messagesElements}</div>
                 <div>
                     <div>
-                        <textarea  onChange={onChangeHandler} value={props.state.newMessageText} placeholder={"Enter your message"}></textarea>
+                        <textarea  onChange={onChangeHandler} value={props.dialogPage.newMessageText} placeholder={"Enter your message"}></textarea>
                     </div>
                     <div><button onClick={addText}>Send</button></div>
                 </div>

@@ -28,14 +28,18 @@ export type StateTypeInner = {
     dialogsPage: DialogPageType
 }
 export type CommonActionType= updateNewMessageTextACType | addMessageACType | updateNewPostTextACType | addPostACType
+
+
+
+
 /*export type StoreType={
     _state: StateTypeInner,
     _callSubscriber: (state: StateTypeInner)=>void,
     getState: ()=>StateTypeInner,
     subscribe: (observer: (state: StateTypeInner) => void)=>void,
     dispatch: (action: ActionType | TextActionType)=>void
-}
-
+}*/
+/*
 let store: StoreType = {
     _state: {
         profilePage: {

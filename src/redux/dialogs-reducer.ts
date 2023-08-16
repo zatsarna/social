@@ -18,23 +18,23 @@ let initState: DialogPageType={
         {name: 'Dimych', id: 1},
         {name: 'Andrey', id: 2},
         {name: 'Sveta', id: 3},
-        {name: 'Vita', id: 4},
-        {name: 'Ann', id: 5}
     ]
 }
 
 const dialogsReducer=(state: DialogPageType=initState, action: CommonActionType): DialogPageType=>{
     switch (action.type){
         case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText=action.text
-            return state
+            return {...state, newMessageText: action.text}
+            /*state.newMessageText=action.text
+            return state*/
         case 'ADD-MESSAGE':
-            state.messages.push({
+            return {...state, messages: [...state.messages, {message: state.newMessageText, id: state.messages.length+1}], newMessageText: ''}
+           /* state.messages.push({
                 message: state.newMessageText,
                 id: state.messages.length + 1
             })
             state.newMessageText = ''
-            return state
+            return state*/
         default:
             return state
     }
