@@ -6,6 +6,7 @@ import {CommonActionType, DialogPageType} from '../../redux/store';
 
 export const Dialogs = (props: { dialogPage: DialogPageType , updateNewMessageText: (text: string)=>void, addText: ()=>void}) => {
 
+
     let dialogsElements = props.dialogPage.dialogs.map(el => <DialogItem name={el.name} id={el.id} key={el.id}/>)
     let messagesElements = props.dialogPage.messages.map(el => <Message message={el.message} id={el.id} key={el.id}/>)
     /*let newMessageElement: RefObject<HTMLTextAreaElement> = React.createRef()*/
