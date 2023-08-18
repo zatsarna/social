@@ -1,5 +1,6 @@
 import profileReducer, {addPostACType, updateNewPostTextACType} from './profile-reducer';
 import dialogsReducer, {addMessageACType, updateNewMessageTextACType} from './dialogs-reducer';
+import {setUsersACType, toggleFollowACType} from './users-reducer';
 
 export type DialogType = {
     name: string,
@@ -19,6 +20,17 @@ export type DialogPageType = {
     dialogs: DialogType[],
     newMessageText: string
 }
+export type UserType={
+    id: number,
+    fullName: string,
+    status: string,
+    location: {country: string, city: string},
+    photo: string,
+    follow: boolean
+}
+export type UsersPageType={
+    users: UserType[]
+}
 export type ProfilePageType = {
     posts: PostType[],
     newPostText: string,
@@ -27,7 +39,7 @@ export type StateTypeInner = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-export type CommonActionType= updateNewMessageTextACType | addMessageACType | updateNewPostTextACType | addPostACType
+export type CommonActionType= updateNewMessageTextACType | addMessageACType | updateNewPostTextACType | addPostACType | toggleFollowACType | setUsersACType
 
 
 

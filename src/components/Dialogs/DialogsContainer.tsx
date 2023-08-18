@@ -2,7 +2,6 @@ import React from 'react';
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
-import {DialogPageType} from '../../redux/store';
 import {AppRootStateType} from '../../redux/redux-store';
 
 
