@@ -1,33 +1,48 @@
 import React from 'react';
-import {UserType} from '../../redux/store';
+import photo from '../../assets/images/noPhotoUser.jpg'
+
 import s from './Users.module.css'
+import axios from 'axios';
+export type UserResponceType={
+    name: string,
+    id: number,
+    photos: {
+        small?: string,
+        large?: string
+    },
+    status?: null | string,
+    followed: boolean
+}
+export type UsersResponceType={
+    items: UserResponceType[],
+    totalCount?: number,
+    error?: string | null
+
+}
 export const Users = (props: {
-    users: UserType[],
+    users: UserResponceType[],
     toggleFollow: (userId: number) => void,
-    setUsers: (users: UserType[]) => void
+    setUsers: (users: UserResponceType[]) => void
 }) => {
 
     if (props.users.length===0){
-        props.setUsers([
-            {id: 1, fullName: 'Anna Ivanova', status: 'I am a boss', location: {country: 'Ukraine', city: 'Kyiv'}, photo: 'https://images.pexels.com/photos/2625122/pexels-photo-2625122.jpeg?auto=compress&cs=tinysrgb&w=600', follow: true},
-            {id: 2, fullName: 'Kate Ivanova', status: 'I am a boss', location: {country: 'Poland', city: 'Krakow'}, photo: 'https://images.pexels.com/photos/2625122/pexels-photo-2625122.jpeg?auto=compress&cs=tinysrgb&w=600', follow: false},
-            {id: 3, fullName: 'Iryna Ivanova', status: 'I am a boss', location: {country: 'Ukraine', city: 'Odessa'}, photo: 'https://images.pexels.com/photos/2625122/pexels-photo-2625122.jpeg?auto=compress&cs=tinysrgb&w=600', follow: false}
-        ])
+        axios.get<UsersResponceType>('https://social-network.samuraijs.com/api/1.0/users').then(res =>props.setUsers(res.data.items))
+
     }
 
     return (<>
         <ul>
             {props.users.map(u => <li key={u.id}>
-                <div><img src={u.photo} alt={'profile photo'} className={s.imgSize}/>
-                    <button onClick={()=>props.toggleFollow(u.id)}>{u.follow ? 'Unfollow' : 'Follow'}</button>
+                <div><img src={u.photos.small ? u.photos.small : photo} alt={'profile photo'} className={s.imgSize}/>
+                    <button onClick={()=>props.toggleFollow(u.id)}>{u.followed ? 'Unfollow' : 'Follow'}</button>
                 </div>
                 <div>
                     <div>
-                        <span>{u.fullName}</span>
+                        <span>{u.name}</span>
                         <p>{u.status}</p>
                     </div>
 
-                    <div><span>{u.location.country}</span> <span>{u.location.city}</span></div>
+                    <div><span>{'u.location.country'}</span> <span>{'u.location.city'}</span></div>
 
                 </div>
 

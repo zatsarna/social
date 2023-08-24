@@ -20,17 +20,17 @@ export type DialogPageType = {
     dialogs: DialogType[],
     newMessageText: string
 }
-export type UserType={
+/*export type UserType={
     id: number,
     fullName: string,
     status: string,
     location: {country: string, city: string},
     photo: string,
     follow: boolean
-}
-export type UsersPageType={
+}*/
+/*export type UsersPageType={
     users: UserType[]
-}
+}*/
 export type ProfilePageType = {
     posts: PostType[],
     newPostText: string,
