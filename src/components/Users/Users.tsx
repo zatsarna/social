@@ -1,4 +1,6 @@
 import React from 'react';
+/*
+
 import photo from '../../assets/images/noPhotoUser.jpg'
 
 import s from './Users.module.css'
@@ -59,3 +61,4 @@ export const Users = (props: {
     );
 };
 
+*/

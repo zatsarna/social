@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {UserResponceType, Users} from './Users';
+import {UserResponceType} from './UsersC';
 import {setUsersAC, toggleFollowAC} from '../../redux/users-reducer';
 import {AppRootStateType} from '../../redux/redux-store';
+import UsersC from './UsersC';
 
 const mapStateToProps=(state: AppRootStateType)=>{
     return {
@@ -16,5 +17,5 @@ const mapDispatchToProps=(dispatch: Function)=>{
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
 

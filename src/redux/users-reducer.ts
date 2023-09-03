@@ -1,5 +1,5 @@
 import {CommonActionType} from './store';
-import {UserResponceType, UsersResponceType} from '../components/Users/Users';
+import {UserResponceType, UsersResponceType} from '../components/Users/UsersC';
 export type toggleFollowACType=ReturnType<typeof toggleFollowAC>
 export const toggleFollowAC=(userId: number)=> ({type: 'TOGGLE-FOLLOW', userId: userId} as const)
 export type setUsersACType=ReturnType<typeof setUsersAC>
