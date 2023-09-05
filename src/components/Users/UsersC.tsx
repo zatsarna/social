@@ -27,12 +27,13 @@ interface UsersProps {
     setUsers: (users: UserResponceType[]) => void
 }
 
-class UsersC extends React.Component<UsersProps>{
+class UsersC extends React.Component<UsersProps> {
     constructor(props: UsersProps) {
         super(props);
-        if (this.props.users.length === 0) {
-            axios.get<UsersResponceType>('https://social-network.samuraijs.com/api/1.0/users').then(res => this.props.setUsers(res.data.items))
-        }
+
+    }
+    componentDidMount() {
+        axios.get<UsersResponceType>('https://social-network.samuraijs.com/api/1.0/users').then(res => this.props.setUsers(res.data.items))
     }
 
     render() {
@@ -42,7 +43,8 @@ class UsersC extends React.Component<UsersProps>{
                     {this.props.users.map(u => <li key={u.id}>
                         <div><img src={u.photos.small ? u.photos.small : photo} alt={'profile photo'}
                                   className={s.imgSize}/>
-                            <button onClick={() => this.props.toggleFollow(u.id)}>{u.followed ? 'Unfollow' : 'Follow'}</button>
+                            <button
+                                onClick={() => this.props.toggleFollow(u.id)}>{u.followed ? 'Unfollow' : 'Follow'}</button>
                         </div>
                         <div>
                             <div>
