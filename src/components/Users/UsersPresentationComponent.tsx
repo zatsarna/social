@@ -1,7 +1,8 @@
 import React from 'react';
 import photo from '../../assets/images/noPhotoUser.jpg';
 import s from './Users.module.css';
-import {UserResponceType, UsersProps} from './UsersC';
+import {UserResponceType} from './UsersContainer';
+
 
 type UsersPresentationComponentPropsType={
     onPageChange: (el: number)=>void,
@@ -18,7 +19,8 @@ const UsersPresentationComponent = (props: UsersPresentationComponentPropsType) 
     for (let i=1; i<pagesCount+1; i++){
         arr.push(i)
     }
-    let buttons=arr.map(el =><span key={el} className={props.currentPage===el ? s.selectedPage : ''} onClick={()=>props.onPageChange(el)}>{el}</span>)
+    let buttons=arr.map(el =><span key={el} className={props.currentPage===el ? s.selectedPage : ''} onClick={()=>{props.onPageChange(el)
+    }}>{el}</span>)
     return (
         <>
             <div>
